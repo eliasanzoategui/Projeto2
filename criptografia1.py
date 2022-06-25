@@ -3,15 +3,15 @@
 
 
 
-#a3a4a0a5
 
-def l1(b):
+
+def l1(b): # transforma bytes em uma [lista de inteiros >= 0 and < 256]
     return list(b)
 
-def l2(b):
+def l2(b): # transforma uma [lista de inteiros >= 0 and < 256] em bytes
     return bytes(b)
 
-def l3(m, n):
+def l3(m, n): # função módulo. essa função faz o módulo [m] do número [n] 
     while n < 0 or n >= m:
         if n < 0:
             n += m
@@ -19,10 +19,10 @@ def l3(m, n):
             n -= m
     return n
 
-def l0(code, key, command):
-    if command:
+def l0(code, key, command): # codifica os bytes [code] com a chave [key]
+    if command:    # se o command é True a chave codifica
         command = 1
-    else:
+    else: # se o command é False a chave descodifica
         command = -1
     a0 = len(code)
     a1 = len(key)
@@ -34,14 +34,14 @@ def l0(code, key, command):
             a2 = 0
         code[n1] = l3(256, key[a2] * command + code[n1])
         a2 += 1
-    return l2(code)
+    return l2(code) # retorna bytes
 
 
 
-def c1(p, i, n):
-    return l3(p, i ** n)
+def c1(p, i, n): # método diffie-hellman em que [p] == primo, [i] == inteiro, [n] == número
+    return l3(p, i ** n) # [i] é elevado a [n] módulo [p]
 
-def p1(n):
+def p1(n): # retorna se o número é primo
     r = int(n ** 0.5)
     if n == 2:
         return False
@@ -50,7 +50,7 @@ def p1(n):
             return False
     return True
 
-def b1(n):
+def b1(n): # transforma número inteiro em uma string de '0' e '1' binária
     v = ''
     while n > 0:
         n1 = n / 2
@@ -62,13 +62,13 @@ def b1(n):
     return v
 
 
-def b2(b):
+def b2(b): # transforma uma string de '0' e '1' binária em um número inteiro
     s1 = 0
     for n in range(8):
         s1 += 2 ** n * int(b[n])
     return s1
 
-def b3(l):
+def b3(l): # preenche uma sequência de 8 caracteres de uma string binária
     b = ''
     l1 = len(l)
     for n in range(8):
@@ -78,20 +78,20 @@ def b3(l):
             b += l[n]
     return b
 
-def b4(b):
+def b4(b): # separa uma sequência de uma string binária em uma sequência de 8 bit cada item
     s0 = []
     while b:
         s0.append(b2(b3(b)))
         b = b[8:]    
     return s0
 
-def b0(n):
+def b0(n): # retorna uma sequência de 8 bit, cada item, de um número inteiro
     return b4(b1(n))
 
 
 
 
-def h0(b):
+def h0(b): # faz o hash de um número binário
     a0 = 128
     a1 = [0] * a0
     a3 = 0
