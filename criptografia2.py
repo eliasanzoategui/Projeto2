@@ -104,8 +104,20 @@ def h0(b): # faz o hash de um número binário
     return bytes(a1)
 
 
-
-
+def s1(k, f1, f2):
+    try:
+        b = l0(open(f1, 'rb').read(), k, 1)
+    except:
+        b = b''
+    arq = open(f2, 'wb')
+    arq.write(b)
+    arq.close()
+   
+def s2(k, f1, f2):
+    b = l0(open(f1, 'rb').read(), k, 0)
+    arq = open(f2, 'wb')
+    arq.write(b)
+    arq.close()
 
 
 
